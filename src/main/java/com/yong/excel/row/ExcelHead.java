@@ -1,5 +1,7 @@
 package com.yong.excel.row;
 
+import com.yong.excel.reflect.FieldReflection;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,5 +16,11 @@ public class ExcelHead extends AbstractExcelRow {
 
     public ExcelHead(List<String> cellDatas){
         this.cellDatas = new ArrayList<>(cellDatas);
+    }
+
+    public static ExcelHead ofRelection(Object source) {
+        FieldReflection fieldReflection = new FieldReflection();
+
+        return new ExcelHead(fieldReflection.fieldToList(source));
     }
 }

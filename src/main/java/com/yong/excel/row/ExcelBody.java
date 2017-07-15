@@ -1,15 +1,30 @@
 package com.yong.excel.row;
 
+import com.yong.excel.reflect.FieldReflection;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+
+import static java.util.stream.Collectors.toList;
 
 /**
  * Created by lichking on 2017. 7. 15..
  */
 public class ExcelBody implements Iterable<ExcelRow> {
     private List<ExcelRow> rows;
+
+    public static ExcelBody ofRelection(List<?> source) {
+        FieldReflection fieldReflection = new FieldReflection();
+
+        List<ExcelRow> rows = source.stream()
+                .map(fieldReflection::fieldToList)
+                .map(ExcelRow::new)
+                .collect(toList());
+
+        return new ExcelBody(rows);
+    }
 
     public ExcelBody(ExcelRow... rows){
         this(Arrays.asList(rows));
