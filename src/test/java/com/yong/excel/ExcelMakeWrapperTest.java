@@ -39,6 +39,7 @@ public class ExcelMakeWrapperTest {
                 .newHead(new ExcelHead("가", "나", "다", "라"))
                 .newRow(new ExcelRow("1", "2", "3", "4"))
                 .newBody(new ExcelBody(new ExcelRow("11", "22", null, "하하하")))
+                .newBody(new ExcelBody(new ExcelRow(""), new ExcelRow("aqqqqq")))
                 .merge(new MergeColumn().rowIdx(1).startColIdx(2).endColIdx(4).getMergeRange())
         .merge(new MergeRow().colIdx(1).startRowIdx(2).endRowIdx(4).getMergeRange())
         .merge(new Merge().startRowIdx(10).endRowIdx(20).startColIdx(10).endColIdx(20).getMergeRange());
