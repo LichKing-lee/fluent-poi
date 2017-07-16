@@ -9,10 +9,15 @@ import lombok.Getter;
  */
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class MergeColumn {
+public class MergeColumn implements Mergeable {
     private int rowIdx;
     private int startColIdx;
     private int endColIdx;
+
+    @Override
+    public MergeRange getMergeRange() {
+        return new MergeRange(this.rowIdx, this.rowIdx, this.startColIdx, this.endColIdx - 1);
+    }
 
     public static class Builder{
         private int rowIdx;

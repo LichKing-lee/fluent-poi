@@ -1,5 +1,6 @@
 package com.yong.excel;
 
+import com.yong.excel.merge.Merge;
 import com.yong.excel.merge.MergeColumn;
 import com.yong.excel.merge.MergeRow;
 import com.yong.excel.row.ExcelBody;
@@ -8,7 +9,6 @@ import com.yong.excel.row.ExcelRow;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.util.CellRangeAddress;
 
 import java.util.Iterator;
 
@@ -65,7 +65,7 @@ public class ExcelSheet {
      */
     public ExcelSheet mergeColumn(MergeColumn mergeColumn){
         int rowIdx = mergeColumn.getRowIdx();
-        this.sheet.addMergedRegion(new CellRangeAddress(rowIdx, rowIdx, mergeColumn.getStartColIdx(), mergeColumn.getEndColIdx() - 1));
+        this.sheet.addMergedRegion(mergeColumn.getMergeRange().getCellRangeAddress());
 
         return this;
     }
@@ -78,8 +78,13 @@ public class ExcelSheet {
      * @return
      */
     public ExcelSheet mergeRow(MergeRow mergeRow){
-        int colIdx = mergeRow.getColIdx();
-        this.sheet.addMergedRegion(new CellRangeAddress(mergeRow.getStartRowIdx(), mergeRow.getEndRowIdx() - 1, colIdx, colIdx));
+        this.sheet.addMergedRegion(mergeRow.getMergeRange().getCellRangeAddress());
+
+        return this;
+    }
+
+    public ExcelSheet merge(Merge merge){
+        this.sheet.addMergedRegion(merge.getMergeRange().getCellRangeAddress());
 
         return this;
     }
