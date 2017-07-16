@@ -1,8 +1,6 @@
 package com.yong.excel;
 
-import com.yong.excel.merge.Merge;
-import com.yong.excel.merge.MergeColumn;
-import com.yong.excel.merge.MergeRow;
+import com.yong.excel.merge.MergeRange;
 import com.yong.excel.row.ExcelBody;
 import com.yong.excel.row.ExcelHead;
 import com.yong.excel.row.ExcelRow;
@@ -56,35 +54,8 @@ public class ExcelSheet {
         return this;
     }
 
-    /**
-     * 열병합
-     * 병합할 행 인덱스(rowIdx)와 열 범위(startColIdx, endColIdx)를 인자로 받음
-     * 마지막 열 인덱스(endColIdx)는 병합에 포함하지않음
-     * @param mergeColumn
-     * @return
-     */
-    public ExcelSheet mergeColumn(MergeColumn mergeColumn){
-        int rowIdx = mergeColumn.getRowIdx();
-        this.sheet.addMergedRegion(mergeColumn.getMergeRange().getCellRangeAddress());
-
-        return this;
-    }
-
-    /**
-     * 행병합
-     * 병합할 열 인덱스(colIdx)와 행 범위(startRowIdx, endRowIdx)를 인자로 받음
-     * 마지막 행 인덱스(endRowIdx)는 병합에 포함하지않음
-     * @param mergeRow
-     * @return
-     */
-    public ExcelSheet mergeRow(MergeRow mergeRow){
-        this.sheet.addMergedRegion(mergeRow.getMergeRange().getCellRangeAddress());
-
-        return this;
-    }
-
-    public ExcelSheet merge(Merge merge){
-        this.sheet.addMergedRegion(merge.getMergeRange().getCellRangeAddress());
+    public ExcelSheet merge(MergeRange mergeRange){
+        this.sheet.addMergedRegion(mergeRange.getCellRangeAddress());
 
         return this;
     }
