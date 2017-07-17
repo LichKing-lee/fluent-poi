@@ -6,7 +6,7 @@
 
     <groupId>com.yong</groupId>
     <artifactId>excel-wrapper</artifactId>
-    <version>1.2.0</version>
+    <version>1.2.1</version>
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
