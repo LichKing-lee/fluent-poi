@@ -16,26 +16,24 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */
 public class FieldReflectionTest {
     private FieldReflection fieldReflection;
+    private TestClass testClass;
 
     @Before
     public void setUp(){
         this.fieldReflection = new FieldReflection();
+        this.testClass = new TestClass(5L, "LichKing", 29);
     }
 
     @Test
     public void extractHeadNames() throws Exception {
-        TestClass testClass = new TestClass(5L, "LichKing", 29);
-
-        List<String> result = this.fieldReflection.extractHeadNames(testClass);
+        List<String> result = this.fieldReflection.extractHeadNames(this.testClass);
 
         assertThat(result, is(Arrays.asList("이름", "age")));
     }
 
     @Test
     public void extractCells() throws Exception {
-        TestClass testClass = new TestClass(5L, "LichKing", 29);
-
-        List<String> result = this.fieldReflection.extractCells(testClass);
+        List<String> result = this.fieldReflection.extractCells(this.testClass);
 
         assertThat(result, is(Arrays.asList("5", "29")));
     }
