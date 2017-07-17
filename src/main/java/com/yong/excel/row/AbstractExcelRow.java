@@ -31,7 +31,7 @@ public abstract class AbstractExcelRow implements Iterable<String> {
         this.cellDatas.add(cellData);
     }
 
-    public int size(){
+    public int getCellCount(){
         return this.cellDatas.size();
     }
 
@@ -42,7 +42,7 @@ public abstract class AbstractExcelRow implements Iterable<String> {
 
     private void checkValidIndex(int idx){
         if(idx < 0 || idx >= this.cellDatas.size()){
-            throw new NotFoundCellDataException("size :: " + this.cellDatas.size() + " index :: " + idx);
+            throw new NotFoundCellDataException("cellCount :: " + this.cellDatas.size() + " index :: " + idx);
         }
     }
 }

@@ -17,14 +17,14 @@ public class ExcelHeadTest {
     public void 리스트_생성(){
         ExcelHead head = new ExcelHead(Arrays.asList("가", "나", "다"));
 
-        assertThat(head.size(), is(3));
+        assertThat(head.getCellCount(), is(3));
     }
 
     @Test
     public void 가변인자_생성(){
         ExcelHead head = new ExcelHead("가", "나", "다", "라");
 
-        assertThat(head.size(), is(4));
+        assertThat(head.getCellCount(), is(4));
     }
 
     @Test(expected = NotFoundCellDataException.class)

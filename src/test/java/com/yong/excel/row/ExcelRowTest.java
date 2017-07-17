@@ -14,7 +14,7 @@ public class ExcelRowTest {
     public void ofRelection() throws Exception {
         TestClass instance = new TestClass("LichKing", 29, "lcy9002@naver.com", "01012341234");
 
-        ExcelRow row = ExcelRow.ofRelection(instance);
+        ExcelRow row = ExcelRow.invoke(instance);
 
         assertThat(row, is(new ExcelRow("LichKing", "29", "lcy9002@naver.com", "01012341234")));
     }

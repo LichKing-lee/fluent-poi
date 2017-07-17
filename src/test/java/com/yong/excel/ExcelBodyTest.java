@@ -47,7 +47,7 @@ public class ExcelBodyTest {
         TestClass instance2 = new TestClass("LichKing2", 30, "lcy9002@naver.com", "01012341234");
         TestClass instance3 = new TestClass("LichKing3", 31, "lcy9002@naver.com", "01012341234");
 
-        ExcelBody excelBody = ExcelBody.ofRelection(Arrays.asList(instance1, instance2, instance3));
+        ExcelBody excelBody = ExcelBody.invoke(Arrays.asList(instance1, instance2, instance3));
 
         assertThat(excelBody.rowCount(), is(3));
     }
