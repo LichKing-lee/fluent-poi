@@ -15,3 +15,17 @@ this.excelMakeWrapper.newWorkbook()
 OutputStream osw = new FileOutputStream("test.xlsx");
 this.excelMakeWrapper.exportWorkbook().write(osw);
 ```
+
+* 애노테이션 기반의 객체로 데이터 생성 예제
+
+```java
+TestClass target1 = new TestClass("AA", 29, "lcy9002@naver.com", "qqq");
+TestClass target2 = new TestClass("BB", 29, "lcy0202@icloud.com", "sss");
+TestClass target3 = new TestClass("CC", 29, "lcy0202@ticketlink.co.kr", "aaa");
+
+this.excelMakeWrapper.newWorkbook()
+                .newSheet()
+                .newHead(ExcelHead.invoke(target1))
+                .newRow(ExcelRow.invoke(target2))
+                .newBody(ExcelBody.invoke(Arrays.asList(target1, target2, target3)));
+```
