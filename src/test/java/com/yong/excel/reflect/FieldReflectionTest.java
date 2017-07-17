@@ -32,12 +32,12 @@ public class FieldReflectionTest {
     }
 
     @Test
-    public void fieldToList() throws Exception {
+    public void extractCells() throws Exception {
         TestClass testClass = new TestClass(5L, "LichKing", 29);
 
         List<String> result = this.fieldReflection.extractCells(testClass);
 
-        assertThat(result.size(), is(2));
+        assertThat(result, is(Arrays.asList("5", "29")));
     }
 
     @AllArgsConstructor
