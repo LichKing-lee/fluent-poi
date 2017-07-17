@@ -1,6 +1,7 @@
 package com.yong.excel.row;
 
 import com.yong.excel.exception.NotFoundCellDataException;
+import lombok.EqualsAndHashCode;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,6 +11,7 @@ import java.util.List;
 /**
  * Created by lichking on 2017. 7. 15..
  */
+@EqualsAndHashCode
 public abstract class AbstractExcelRow implements Iterable<String> {
     protected List<String> cellDatas;
 
@@ -31,7 +33,7 @@ public abstract class AbstractExcelRow implements Iterable<String> {
         this.cellDatas.add(cellData);
     }
 
-    public int size(){
+    public int getCellCount(){
         return this.cellDatas.size();
     }
 
@@ -42,7 +44,7 @@ public abstract class AbstractExcelRow implements Iterable<String> {
 
     private void checkValidIndex(int idx){
         if(idx < 0 || idx >= this.cellDatas.size()){
-            throw new NotFoundCellDataException("size :: " + this.cellDatas.size() + " index :: " + idx);
+            throw new NotFoundCellDataException("cellCount :: " + this.cellDatas.size() + " index :: " + idx);
         }
     }
 }

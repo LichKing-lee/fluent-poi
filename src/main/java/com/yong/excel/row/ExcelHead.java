@@ -18,9 +18,9 @@ public class ExcelHead extends AbstractExcelRow {
         this.cellDatas = new ArrayList<>(cellDatas);
     }
 
-    public static ExcelHead ofRelection(Object source) {
+    public static ExcelHead invoke(Object source) {
         FieldReflection fieldReflection = new FieldReflection();
 
-        return new ExcelHead(fieldReflection.fieldToList(source));
+        return new ExcelHead(fieldReflection.extractHeadNames(source));
     }
 }

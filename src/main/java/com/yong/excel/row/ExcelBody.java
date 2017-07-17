@@ -15,11 +15,11 @@ import static java.util.stream.Collectors.toList;
 public class ExcelBody implements Iterable<ExcelRow> {
     private List<ExcelRow> rows;
 
-    public static ExcelBody ofRelection(List<?> source) {
+    public static ExcelBody invoke(List<?> source) {
         FieldReflection fieldReflection = new FieldReflection();
 
         List<ExcelRow> rows = source.stream()
-                .map(fieldReflection::fieldToList)
+                .map(fieldReflection::extractCells)
                 .map(ExcelRow::new)
                 .collect(toList());
 
@@ -36,6 +36,10 @@ public class ExcelBody implements Iterable<ExcelRow> {
 
     public int rowCount(){
         return rows.size();
+    }
+
+    public ExcelRow getRow(int idx){
+        return this.rows.get(idx);
     }
 
     @Override

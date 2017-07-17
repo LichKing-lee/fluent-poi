@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by lichking on 2017. 7. 15..
  */
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = true)
 public class ExcelRow extends AbstractExcelRow {
     public ExcelRow(String... cellDatas){
         this(Arrays.asList(cellDatas));
@@ -20,9 +20,9 @@ public class ExcelRow extends AbstractExcelRow {
         this.cellDatas = new ArrayList<>(cellDatas);
     }
 
-    public static ExcelRow ofRelection(Object source) {
+    public static ExcelRow invoke(Object source) {
         FieldReflection fieldReflection = new FieldReflection();
 
-        return new ExcelRow(fieldReflection.fieldToList(source));
+        return new ExcelRow(fieldReflection.extractCells(source));
     }
 }
