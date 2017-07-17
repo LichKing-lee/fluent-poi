@@ -23,6 +23,6 @@ public class ExcelRow extends AbstractExcelRow {
     public static ExcelRow ofRelection(Object source) {
         FieldReflection fieldReflection = new FieldReflection();
 
-        return new ExcelRow(fieldReflection.fieldToList(source));
+        return new ExcelRow(fieldReflection.extractCells(source));
     }
 }

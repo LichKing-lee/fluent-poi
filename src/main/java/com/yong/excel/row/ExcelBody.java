@@ -19,7 +19,7 @@ public class ExcelBody implements Iterable<ExcelRow> {
         FieldReflection fieldReflection = new FieldReflection();
 
         List<ExcelRow> rows = source.stream()
-                .map(fieldReflection::fieldToList)
+                .map(fieldReflection::extractCells)
                 .map(ExcelRow::new)
                 .collect(toList());
 
