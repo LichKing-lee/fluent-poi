@@ -38,6 +38,10 @@ public class ExcelBody implements Iterable<ExcelRow> {
         return rows.size();
     }
 
+    public ExcelRow getRow(int idx){
+        return this.rows.get(idx);
+    }
+
     @Override
     public Iterator<ExcelRow> iterator() {
         return new BodyIterator(this.rows);

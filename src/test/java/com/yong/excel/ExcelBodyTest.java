@@ -1,5 +1,6 @@
 package com.yong.excel;
 
+import com.yong.excel.annotation.Excel;
 import com.yong.excel.row.ExcelBody;
 import com.yong.excel.row.ExcelRow;
 import lombok.AllArgsConstructor;
@@ -50,10 +51,12 @@ public class ExcelBodyTest {
         ExcelBody excelBody = ExcelBody.invoke(Arrays.asList(instance1, instance2, instance3));
 
         assertThat(excelBody.rowCount(), is(3));
+        assertThat(excelBody.getRow(1).getCellCount(), is(1));
     }
 
     @AllArgsConstructor
     private static class TestClass{
+        @Excel("이름")
         private String name;
         private int age;
         private String email;

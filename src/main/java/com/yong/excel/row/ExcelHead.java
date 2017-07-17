@@ -21,6 +21,6 @@ public class ExcelHead extends AbstractExcelRow {
     public static ExcelHead invoke(Object source) {
         FieldReflection fieldReflection = new FieldReflection();
 
-        return new ExcelHead(fieldReflection.extractCells(source));
+        return new ExcelHead(fieldReflection.extractHeadNames(source));
     }
 }

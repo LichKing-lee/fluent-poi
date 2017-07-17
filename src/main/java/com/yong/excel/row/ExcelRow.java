@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by lichking on 2017. 7. 15..
  */
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = true)
 public class ExcelRow extends AbstractExcelRow {
     public ExcelRow(String... cellDatas){
         this(Arrays.asList(cellDatas));

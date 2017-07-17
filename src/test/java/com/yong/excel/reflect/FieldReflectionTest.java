@@ -40,7 +40,7 @@ public class FieldReflectionTest {
 
     @AllArgsConstructor
     private static class TestClass{
-        @Excel(head = "이름")
+        @Excel(value = "이름")
         private Long id;
         private String name;
         @Excel

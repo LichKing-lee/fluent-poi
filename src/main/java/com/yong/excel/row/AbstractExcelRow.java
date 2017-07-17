@@ -1,6 +1,7 @@
 package com.yong.excel.row;
 
 import com.yong.excel.exception.NotFoundCellDataException;
+import lombok.EqualsAndHashCode;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,6 +11,7 @@ import java.util.List;
 /**
  * Created by lichking on 2017. 7. 15..
  */
+@EqualsAndHashCode
 public abstract class AbstractExcelRow implements Iterable<String> {
     protected List<String> cellDatas;
 

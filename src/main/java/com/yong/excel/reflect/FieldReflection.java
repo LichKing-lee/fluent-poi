@@ -16,7 +16,7 @@ import static java.util.stream.Collectors.toList;
 public class FieldReflection {
     public List<String> extractHeadNames(Object source){
         return extractDatas(source, field -> {
-            String head = field.getAnnotation(Excel.class).head();
+            String head = field.getAnnotation(Excel.class).value();
             return head.length() < 1 ? field.getName() : head;
         });
     }
