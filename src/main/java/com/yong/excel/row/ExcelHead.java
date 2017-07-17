@@ -20,7 +20,7 @@ public class ExcelHead extends AbstractExcelRow {
 
     public static ExcelHead ofRelection(Object source) {
         FieldReflection fieldReflection = new FieldReflection();
-  
+        
         return new ExcelHead(fieldReflection.fieldToList(source));
     }
 }
