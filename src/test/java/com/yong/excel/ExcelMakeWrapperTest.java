@@ -4,7 +4,7 @@ import com.yong.excel.annotation.Excel;
 import com.yong.excel.merge.Merge;
 import com.yong.excel.merge.MergeColumn;
 import com.yong.excel.merge.MergeRow;
-import com.yong.excel.row.ExcelBody;
+import com.yong.excel.row.ExcelRows;
 import com.yong.excel.row.ExcelHead;
 import com.yong.excel.row.ExcelRow;
 import lombok.AllArgsConstructor;
@@ -39,12 +39,12 @@ public class ExcelMakeWrapperTest {
     public void excel_make() throws IOException {
         this.excelMakeWrapper.newWorkbook()
                 .newSheet()
-                .newHead(new ExcelHead("가", "나", "다", "라"))
-                .newRow(new ExcelRow("1", "2", "3", "4"))
-                .newBody(new ExcelBody(new ExcelRow("11", "22", null, "하하하")))
-                .merge(new MergeColumn().rowIdx(1).startColIdx(2).endColIdx(4).getMergeRange())
-                .merge(new MergeRow().colIdx(1).startRowIdx(2).endRowIdx(4).getMergeRange())
-                .merge(new Merge().startRowIdx(10).endRowIdx(20).startColIdx(10).endColIdx(20).getMergeRange());
+                .addHead(new ExcelHead("가", "나", "다", "라"))
+                .addHead(new ExcelRow("1", "2", "3", "4"))
+                .addRows(new ExcelRows(new ExcelRow("11", "22", null, "하하하")))
+                .merge(new MergeColumn().rowIdx(1).startColIdx(2).endColIdx(4))
+                .merge(new MergeRow().colIdx(1).startRowIdx(2).endRowIdx(4))
+                .merge(new Merge().startRowIdx(10).endRowIdx(20).startColIdx(10).endColIdx(20));
 
         OutputStream osw = new FileOutputStream("test.xlsx");
         this.excelMakeWrapper.exportWorkbook().write(osw);
@@ -59,9 +59,9 @@ public class ExcelMakeWrapperTest {
 
         this.excelMakeWrapper.newWorkbook()
                 .newSheet()
-                .newHead(ExcelHead.invoke(target1))
-                .newRow(ExcelRow.invoke(target2))
-                .newBody(ExcelBody.invoke(Arrays.asList(target1, target2, target3)));
+                .addHead(ExcelHead.invoke(target1))
+                .addHead(ExcelRow.invoke(target2))
+                .addRows(ExcelRows.invoke(Arrays.asList(target1, target2, target3)));
 
         OutputStream osw = new FileOutputStream("test.xlsx");
         this.excelMakeWrapper.exportWorkbook().write(osw);
@@ -69,7 +69,7 @@ public class ExcelMakeWrapperTest {
 
     @AllArgsConstructor
     private static class TestClass{
-        @Excel(head = "이름", priority = 1)
+        @Excel(head = "이름", priority = 11)
         private String name;
         @Excel(head = "나이", priority = 3)
         private int age;
