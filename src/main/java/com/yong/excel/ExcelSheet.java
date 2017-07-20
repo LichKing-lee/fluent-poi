@@ -1,9 +1,9 @@
 package com.yong.excel;
 
-import com.yong.excel.merge.MergeRange;
-import com.yong.excel.row.ExcelBody;
+import com.yong.excel.merge.Mergeable;
 import com.yong.excel.row.ExcelHead;
 import com.yong.excel.row.ExcelRow;
+import com.yong.excel.row.ExcelRows;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -26,16 +26,16 @@ public class ExcelSheet {
         this.rowIdx = rowIdx;
     }
 
-    public ExcelSheet newHead(ExcelHead excelHead){
+    public ExcelSheet addHead(ExcelHead excelHead){
         return addRow(excelHead);
     }
 
-    public ExcelSheet newRow(ExcelRow excelRow){
+    public ExcelSheet addHead(ExcelRow excelRow){
         return addRow(excelRow);
     }
 
-    public ExcelSheet newBody(ExcelBody excelBody) {
-        for(ExcelRow row : excelBody){
+    public ExcelSheet addRows(ExcelRows excelRows) {
+        for(ExcelRow row : excelRows){
             this.addRow(row);
         }
 
@@ -54,8 +54,8 @@ public class ExcelSheet {
         return this;
     }
 
-    public ExcelSheet merge(MergeRange mergeRange){
-        this.sheet.addMergedRegion(mergeRange.getCellRangeAddress());
+    public ExcelSheet merge(Mergeable mergeable){
+        this.sheet.addMergedRegion(mergeable.getMergeRange().getCellRangeAddress());
 
         return this;
     }

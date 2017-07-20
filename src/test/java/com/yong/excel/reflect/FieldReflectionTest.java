@@ -28,22 +28,22 @@ public class FieldReflectionTest {
     public void extractHeadNames() throws Exception {
         List<String> result = this.fieldReflection.extractHeadNames(this.testClass);
 
-        assertThat(result, is(Arrays.asList("이름", "age")));
+        assertThat(result, is(Arrays.asList("age", "이름")));
     }
 
     @Test
     public void extractCells() throws Exception {
         List<String> result = this.fieldReflection.extractCells(this.testClass);
 
-        assertThat(result, is(Arrays.asList("5", "29")));
+        assertThat(result, is(Arrays.asList("29", "5")));
     }
 
     @AllArgsConstructor
     private static class TestClass{
-        @Excel(value = "이름")
+        @Excel(head = "이름", priority = 10)
         private Long id;
         private String name;
-        @Excel
+        @Excel(priority = 5)
         private int age;
     }
 }

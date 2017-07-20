@@ -12,10 +12,10 @@ import static java.util.stream.Collectors.toList;
 /**
  * Created by lichking on 2017. 7. 15..
  */
-public class ExcelBody implements Iterable<ExcelRow> {
+public class ExcelRows implements Iterable<ExcelRow> {
     private List<ExcelRow> rows;
 
-    public static ExcelBody invoke(List<?> source) {
+    public static ExcelRows invoke(List<?> source) {
         FieldReflection fieldReflection = new FieldReflection();
 
         List<ExcelRow> rows = source.stream()
@@ -23,14 +23,14 @@ public class ExcelBody implements Iterable<ExcelRow> {
                 .map(ExcelRow::new)
                 .collect(toList());
 
-        return new ExcelBody(rows);
+        return new ExcelRows(rows);
     }
 
-    public ExcelBody(ExcelRow... rows){
+    public ExcelRows(ExcelRow... rows){
         this(Arrays.asList(rows));
     }
 
-    public ExcelBody(List<ExcelRow> rows){
+    public ExcelRows(List<ExcelRow> rows){
         this.rows = new ArrayList<>(rows);
     }
 
