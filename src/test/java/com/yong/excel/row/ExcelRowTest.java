@@ -24,7 +24,7 @@ public class ExcelRowTest {
 
     @AllArgsConstructor
     private static class TestClass{
-        @Excel
+        @Excel(priority = 3)
         private String name;
         private int age;
         private String email;

@@ -47,9 +47,9 @@ public class ExcelHeadTest {
 
     @AllArgsConstructor
     private static class TestClass{
-        @Excel
+        @Excel(priority = 3)
         private String name;
-        @Excel("나이")
+        @Excel(head = "나이", priority = 4)
         private int age;
         private String email;
     }

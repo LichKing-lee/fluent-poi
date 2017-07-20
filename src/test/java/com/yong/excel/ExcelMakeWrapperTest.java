@@ -69,11 +69,11 @@ public class ExcelMakeWrapperTest {
 
     @AllArgsConstructor
     private static class TestClass{
-        @Excel("이름")
+        @Excel(head = "이름", priority = 1)
         private String name;
-        @Excel("나이")
+        @Excel(head = "나이", priority = 3)
         private int age;
-        @Excel
+        @Excel(priority = 2)
         private String email;
         private String etc;
     }

@@ -56,7 +56,7 @@ public class ExcelBodyTest {
 
     @AllArgsConstructor
     private static class TestClass{
-        @Excel("이름")
+        @Excel(head = "이름", priority = 1)
         private String name;
         private int age;
         private String email;
