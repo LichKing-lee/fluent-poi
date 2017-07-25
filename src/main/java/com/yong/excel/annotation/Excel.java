@@ -12,5 +12,5 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 public @interface Excel {
     String head() default "";
-    int priority();
+    int priority() default 0;
 }
