@@ -6,7 +6,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 /**
  * Created by lichking on 2017. 7. 15..
  */
-public class ExcelMakeWrapper {
+public class FluentPoi {
     private ExcelWorkbook excelWorkbook;
 
     public ExcelWorkbook newWorkbook(){

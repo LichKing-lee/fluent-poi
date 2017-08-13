@@ -17,7 +17,7 @@ public class ExcelSheetTest {
 
     @Before
     public void setUp(){
-        this.excelSheet = new ExcelMakeWrapper()
+        this.excelSheet = new FluentPoi()
                 .newWorkbook()
                 .newSheet();
     }

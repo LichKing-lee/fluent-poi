@@ -20,24 +20,24 @@ import java.util.Arrays;
 /**
  * Created by lichking on 2017. 7. 15..
  */
-public class ExcelMakeWrapperTest {
-    private ExcelMakeWrapper excelMakeWrapper;
+public class FluentPoiTest {
+    private FluentPoi fluentPoi;
 
     @Before
     public void setUp(){
-        this.excelMakeWrapper = new ExcelMakeWrapper();
+        this.fluentPoi = new FluentPoi();
     }
 
     @Test
     public void newWorkbook_nonException(){
-        this.excelMakeWrapper.newWorkbook()
+        this.fluentPoi.newWorkbook()
             .newSheet();
     }
 
     @Test
     @Ignore
     public void excel_make() throws IOException {
-        this.excelMakeWrapper.newWorkbook()
+        this.fluentPoi.newWorkbook()
                 .newSheet()
                 .addHead(new ExcelHead("가", "나", "다", "라"))
                 .addHead(new ExcelRow("1", "2", "3", "4"))
@@ -47,7 +47,7 @@ public class ExcelMakeWrapperTest {
                 .merge(new Merge().startRowIdx(10).endRowIdx(20).startColIdx(10).endColIdx(20));
 
         OutputStream osw = new FileOutputStream("test.xlsx");
-        this.excelMakeWrapper.exportWorkbook().write(osw);
+        this.fluentPoi.exportWorkbook().write(osw);
     }
 
     @Test
@@ -57,14 +57,14 @@ public class ExcelMakeWrapperTest {
         TestClass target2 = new TestClass("BB", 29, "lcy0202@icloud.com", "sss");
         TestClass target3 = new TestClass("CC", 29, "lcy0202@ticketlink.co.kr", "aaa");
 
-        this.excelMakeWrapper.newWorkbook()
+        this.fluentPoi.newWorkbook()
                 .newSheet()
                 .addHead(ExcelHead.invoke(target1))
                 .addHead(ExcelRow.invoke(target2))
                 .addRows(ExcelRows.invoke(Arrays.asList(target1, target2, target3)));
 
         OutputStream osw = new FileOutputStream("test.xlsx");
-        this.excelMakeWrapper.exportWorkbook().write(osw);
+        this.fluentPoi.exportWorkbook().write(osw);
     }
 
     @AllArgsConstructor
