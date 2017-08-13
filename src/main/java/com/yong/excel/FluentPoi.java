@@ -10,7 +10,11 @@ public class FluentPoi {
     private ExcelWorkbook excelWorkbook;
 
     public ExcelWorkbook newWorkbook(){
-        this.excelWorkbook = new ExcelWorkbook(new HSSFWorkbook());
+        return newWorkbook(new HSSFWorkbook());
+    }
+
+    ExcelWorkbook newWorkbook(Workbook workbook){
+        this.excelWorkbook = new ExcelWorkbook(workbook);
         return this.excelWorkbook;
     }
 

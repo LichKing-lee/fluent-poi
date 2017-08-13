@@ -4,9 +4,9 @@ import com.yong.excel.annotation.Excel;
 import com.yong.excel.merge.Merge;
 import com.yong.excel.merge.MergeColumn;
 import com.yong.excel.merge.MergeRow;
-import com.yong.excel.row.ExcelRows;
 import com.yong.excel.row.ExcelHead;
 import com.yong.excel.row.ExcelRow;
+import com.yong.excel.row.ExcelRows;
 import lombok.AllArgsConstructor;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -31,7 +31,7 @@ public class FluentPoiTest {
     @Test
     public void newWorkbook_nonException(){
         this.fluentPoi.newWorkbook()
-            .newSheet();
+                .newSheet();
     }
 
     @Test
@@ -40,7 +40,7 @@ public class FluentPoiTest {
         this.fluentPoi.newWorkbook()
                 .newSheet()
                 .addHead(new ExcelHead("가", "나", "다", "라"))
-                .addHead(new ExcelRow("1", "2", "3", "4"))
+                .addRow(new ExcelRow("1", "2", "3", "4"))
                 .addRows(new ExcelRows(new ExcelRow("11", "22", null, "하하하")))
                 .merge(new MergeColumn().rowIdx(1).startColIdx(2).endColIdx(4))
                 .merge(new MergeRow().colIdx(1).startRowIdx(2).endRowIdx(4))
@@ -60,7 +60,7 @@ public class FluentPoiTest {
         this.fluentPoi.newWorkbook()
                 .newSheet()
                 .addHead(ExcelHead.invoke(target1))
-                .addHead(ExcelRow.invoke(target2))
+                .addRow(ExcelRow.invoke(target2))
                 .addRows(ExcelRows.invoke(Arrays.asList(target1, target2, target3)));
 
         OutputStream osw = new FileOutputStream("test.xlsx");
