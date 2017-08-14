@@ -27,22 +27,22 @@ public class ExcelSheet {
     }
 
     public ExcelSheet addHead(ExcelHead excelHead){
-        return addRow(excelHead);
+        return add(excelHead);
     }
 
-    public ExcelSheet addHead(ExcelRow excelRow){
-        return addRow(excelRow);
+    public ExcelSheet addRow(ExcelRow excelRow){
+        return add(excelRow);
     }
 
     public ExcelSheet addRows(ExcelRows excelRows) {
         for(ExcelRow row : excelRows){
-            this.addRow(row);
+            this.add(row);
         }
 
         return this;
     }
 
-    private ExcelSheet addRow(Iterable<String> iterable){
+    private ExcelSheet add(Iterable<String> iterable){
         Row row = this.sheet.createRow(this.rowIdx++);
 
         Iterator<String> iterator = iterable.iterator();
@@ -62,5 +62,9 @@ public class ExcelSheet {
 
     public int lastRowNum(){
         return this.rowIdx;
+    }
+
+    public int mergeCellCount() {
+        return this.sheet.getNumMergedRegions();
     }
 }

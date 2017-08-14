@@ -8,6 +8,8 @@ public class MergeColumn implements Mergeable {
     private int startColIdx;
     private int endColIdx;
 
+
+
     public MergeColumn rowIdx(int rowIdx){
         this.rowIdx = rowIdx;
 

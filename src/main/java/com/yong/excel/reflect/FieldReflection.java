@@ -14,10 +14,11 @@ import static java.util.stream.Collectors.toList;
  * Created by lichking on 2017. 7. 15..
  */
 public class FieldReflection {
-    private static Map<Class<?>, List<PriorityExcel>> map = new ConcurrentHashMap<>();
+    private static Map<Class<?>, List<PriorityExcel>> headMap = new ConcurrentHashMap<>();
+    private static Map<Class<?>, List<PriorityExcel>> rowMap = new ConcurrentHashMap<>();
 
     public List<String> extractHeadNames(Object source){
-        List<PriorityExcel> priorityExcels = readClassAndCached(source, field -> {
+        List<PriorityExcel> priorityExcels = readClassAndCached(source, headMap, field -> {
             Excel annotation = field.getAnnotation(Excel.class);
             String head = annotation.head();
             return new PriorityExcel(annotation.priority(), head.length() < 1 ? field.getName() : head);
@@ -27,7 +28,7 @@ public class FieldReflection {
     }
 
     public List<String> extractCells(Object source){
-        List<PriorityExcel> priorityExcels = readClassAndCached(source, field -> {
+        List<PriorityExcel> priorityExcels = readClassAndCached(source, rowMap, field -> {
             try {
                 field.setAccessible(true);
                 return new PriorityExcel(field.getAnnotation(Excel.class).priority(), field.get(source));
@@ -46,12 +47,11 @@ public class FieldReflection {
                 .collect(toList());
     }
 
-    private List<PriorityExcel> readClassAndCached(Object source, Function<Field, PriorityExcel> function){
+    private List<PriorityExcel> readClassAndCached(Object source, Map<Class<?>, List<PriorityExcel>> map, Function<Field, PriorityExcel> function){
         Class<?> aClass = source.getClass();
 
         return map.computeIfAbsent(aClass, aClass1 -> {
             Field[] fields = aClass1.getDeclaredFields();
-            System.out.println("test");
 
             return Arrays.stream(fields)
                     .filter(filed -> filed.isAnnotationPresent(Excel.class))
