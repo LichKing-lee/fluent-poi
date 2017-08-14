@@ -5,7 +5,6 @@ import com.yong.excel.row.ExcelHead;
 import com.yong.excel.row.ExcelRow;
 import com.yong.excel.row.ExcelRows;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -50,7 +49,6 @@ public class ExcelSheetTest {
     }
 
     @Test
-    @Ignore
     public void merge(){
         this.excelSheet.addRows(new ExcelRows(new ExcelRow("가", "나", "다"),
                 new ExcelRow("가", "나", "다"),
@@ -58,6 +56,6 @@ public class ExcelSheetTest {
 
         this.excelSheet.merge(new MergeRow().colIdx(0).startRowIdx(0).endRowIdx(3));
 
-        assertThat(this.excelSheet.lastRowNum(), is(0));
+        assertThat(this.excelSheet.mergeCellCount(), is(1));
     }
 }

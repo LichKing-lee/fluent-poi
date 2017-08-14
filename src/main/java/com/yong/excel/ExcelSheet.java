@@ -63,4 +63,8 @@ public class ExcelSheet {
     public int lastRowNum(){
         return this.rowIdx;
     }
+
+    public int mergeCellCount() {
+        return this.sheet.getNumMergedRegions();
+    }
 }
