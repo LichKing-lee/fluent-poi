@@ -15,7 +15,7 @@ import static java.util.stream.Collectors.toList;
 public class ExcelRows implements Iterable<ExcelRow> {
     private List<ExcelRow> rows;
 
-    public static ExcelRows invoke(List<?> source) {
+    public static ExcelRows from(List<?> source) {
         FieldReflection fieldReflection = new FieldReflection();
 
         List<ExcelRow> rows = source.stream()

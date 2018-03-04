@@ -25,9 +25,9 @@ TestClass target1 = new TestClass("AA", 29, "lcy9002@naver.com", "qqq");
 
         this.excelMakeWrapper.newWorkbook()
                 .newSheet()
-                .addHead(ExcelHead.invoke(target1))
-                .addHead(ExcelRow.invoke(target2))
-                .addRows(ExcelRows.invoke(Arrays.asList(target1, target2, target3)));
+                .addHead(ExcelHead.from(target1))
+                .addHead(ExcelRow.from(target2))
+                .addRows(ExcelRows.from(Arrays.asList(target1, target2, target3)));
 
         OutputStream osw = new FileOutputStream("test.xlsx");
         this.excelMakeWrapper.exportWorkbook().write(osw);
