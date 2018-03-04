@@ -19,6 +19,17 @@ this.excelMakeWrapper.newWorkbook()
 * 애노테이션 기반의 객체로 데이터 생성 예제
 
 ```java
+@AllArgsConstructor                    
+private static class TestClass{        
+    @Excel(head = "이름", priority = 11) 
+    private String name;               
+    @Excel(head = "나이", priority = 3)  
+    private int age;                   
+    @Excel(priority = 2)               
+    private String email;              
+    private String etc;                
+}                                      
+
 TestClass target1 = new TestClass("AA", 29, "lcy9002@naver.com", "qqq");
         TestClass target2 = new TestClass("BB", 29, "lcy0202@icloud.com", "sss");
         TestClass target3 = new TestClass("CC", 29, "lcy0202@ticketlink.co.kr", "aaa");
