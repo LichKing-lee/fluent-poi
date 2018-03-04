@@ -59,9 +59,9 @@ public class FluentPoiTest {
 
         this.fluentPoi.newWorkbook()
                 .newSheet()
-                .addHead(ExcelHead.invoke(target1))
-                .addRow(ExcelRow.invoke(target2))
-                .addRows(ExcelRows.invoke(Arrays.asList(target1, target2, target3)));
+                .addHead(ExcelHead.from(target1))
+                .addRow(ExcelRow.from(target2))
+                .addRows(ExcelRows.from(Arrays.asList(target1, target2, target3)));
 
         OutputStream osw = new FileOutputStream("test.xlsx");
         this.fluentPoi.exportWorkbook().write(osw);

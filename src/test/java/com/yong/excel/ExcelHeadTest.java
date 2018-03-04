@@ -40,7 +40,7 @@ public class ExcelHeadTest {
     public void 애노테이션기반_생성(){
         TestClass testClass = new TestClass("LichKing", 29, "lcy9002@naver.com");
 
-        ExcelHead excelHead = ExcelHead.invoke(testClass);
+        ExcelHead excelHead = ExcelHead.from(testClass);
 
         assertThat(excelHead, equalTo(new ExcelHead("name", "나이")));
     }

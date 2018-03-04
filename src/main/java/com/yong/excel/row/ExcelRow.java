@@ -20,7 +20,7 @@ public class ExcelRow extends AbstractExcelRow {
         this.cellDatas = new ArrayList<>(cellDatas);
     }
 
-    public static ExcelRow invoke(Object source) {
+    public static ExcelRow from(Object source) {
         FieldReflection fieldReflection = new FieldReflection();
 
         return new ExcelRow(fieldReflection.extractCells(source));
